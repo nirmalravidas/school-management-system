@@ -16,9 +16,20 @@ app.get("/", (req, res) => {
 });
 
 const startDB = async () => {
+    const requiredEnv = ["DB_HOST", "DB_USER", "DB_PASSWORD", "DB_NAME"];
+    const missing = requiredEnv.filter((key) => !process.env[key]);
+
+    if (missing.length) {
+        throw new Error(`Missing required env vars: ${missing.join(", ")}`);
+    }
+
     await testConnection();
     await initDB();
 };
-startDB();
+
+startDB().catch((err) => {
+    console.error("Failed to start the database:", err);
+    process.exit(1);
+});
 
 export default app;
