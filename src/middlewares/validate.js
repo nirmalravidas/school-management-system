@@ -1,4 +1,4 @@
-function validateAddSchool(req, res, next){
+export function validateAddSchool(req, res, next){
     const { name, address, latitude, longitude } = req.body;
 
     if(!name || typeof name !== 'string' || name.trim() === ""){
@@ -54,7 +54,7 @@ function validateAddSchool(req, res, next){
     next();
 }
 
-function validateListSchools(req, res, next){
+export function validateListSchools(req, res, next){
     const {latitude, longitude} = req.query;
 
     if(latitude === undefined || latitude === null || isNaN(Number(latitude))){
@@ -93,5 +93,3 @@ function validateListSchools(req, res, next){
 
     next();
 }
-
-module.exports = {validateAddSchool, validateListSchools};
