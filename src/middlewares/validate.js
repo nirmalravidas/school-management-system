@@ -1,3 +1,10 @@
+const parseCoordinate = (value) => {
+    if (value === undefined || value === null || String(value).trim() === "") {
+        return NaN;
+    }
+    return Number(value);
+};
+
 export function validateAddSchool(req, res, next){
     const { name, address, latitude, longitude } = req.body;
 
@@ -15,22 +22,22 @@ export function validateAddSchool(req, res, next){
         });
     }
 
-    if(latitude === undefined || latitude === null || isNaN(Number(latitude))){
+    const lat = parseCoordinate(latitude);
+    const lon = parseCoordinate(longitude);
+
+    if (isNaN(lat)){
         return res.status(400).json({
             success: false,
             message: "latitude is required and must be a valid number"
         });
     }
 
-    if(longitude === undefined || longitude === null || isNaN(Number(longitude))){
+    if (isNaN(lon)){
         return res.status(400).json({
             success: false,
             message: "longitude is required and must be a valid number"
         });
     }
-
-    const lat = Number(latitude);
-    const lon = Number(longitude);
 
     if(lat < -90 || lat > 90){
         return res.status(400).json({
@@ -57,22 +64,22 @@ export function validateAddSchool(req, res, next){
 export function validateListSchools(req, res, next){
     const {latitude, longitude} = req.query;
 
-    if(latitude === undefined || latitude === null || isNaN(Number(latitude))){
+    const lat = parseCoordinate(latitude);
+    const lon = parseCoordinate(longitude);
+
+    if (isNaN(lat)){
         return res.status(400).json({
             success: false,
             message: "latitude is required and must be a valid number"
         });
     }
 
-    if(longitude === undefined || longitude === null || isNaN(Number(longitude))){
+    if (isNaN(lon)){
         return res.status(400).json({
             success: false,
             message: "longitude is required and must be a valid number"
         });
     }
-
-    const lat = Number(latitude);
-    const lon = Number(longitude);
 
     if(lat < -90 || lat > 90){
         return res.status(400).json({
