@@ -5,7 +5,7 @@ export const createSchool = async ({ name, address, latitude, longitude }) => {
         "INSERT INTO schools (name, address, latitude, longitude) VALUES (?, ?, ?, ?)",
         [name, address, latitude, longitude]
     );
-    return result;
+    return result.insertId;
 };
 
 export const getAllSchools = async () => {
