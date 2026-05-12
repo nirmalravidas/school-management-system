@@ -20,3 +20,35 @@ export const addSchool = async (req, res) => {
         });
     }
 };
+
+export const listSchools = async (req, res) => {
+    try {
+        const userLatitude = req.query.latitude;
+        const userLongitude = req.query.longitude;
+
+        const schools = await getAllSchools();
+
+        const sorted = schools.map((school) => ({
+            ...school,
+            distance: parseFloat(calculateDistance(userLatitude, userLongitude, school.latitude, school.longitude).toFixed(2)),
+        })).sort((a, b) => a.distance - b.distance);
+
+        return res.status(200).json({
+            success: true,
+            count: sorted.length,
+            user_location: {
+                latitude: userLatitude,
+                longitude: userLongitude,
+            },
+            message: "Schools retrieved successfully",
+            data: sorted,
+        });
+
+    } catch(error){
+        console.log('listSchools error:', error);
+        return res.status(500).json({
+            success: false,
+            message: "An error occurred while retrieving schools",
+        });
+    }
+}
