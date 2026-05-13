@@ -338,7 +338,7 @@ Expected: 400 Bad Request
 
 #### 5. List Schools by Distance
 ```
-GET /listSchools?latitude=40.7128&longitude=-74.0060
+GET /listSchools?lat=40.7128&lon=-74.0060
 Expected: 200 OK with schools sorted by distance
 ```
 
