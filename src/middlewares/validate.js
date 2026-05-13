@@ -62,41 +62,41 @@ export function validateAddSchool(req, res, next){
 }
 
 export function validateListSchools(req, res, next){
-    const {latitude, longitude} = req.query;
+    const {lat, lon} = req.query;
 
-    const lat = parseCoordinate(latitude);
-    const lon = parseCoordinate(longitude);
+    const latitude = parseCoordinate(lat);
+    const longitude = parseCoordinate(lon);
 
-    if (isNaN(lat)){
+    if (isNaN(latitude)){
         return res.status(400).json({
             success: false,
-            message: "latitude is required and must be a valid number"
+            message: "lat is required and must be a valid number"
         });
     }
 
-    if (isNaN(lon)){
+    if (isNaN(longitude)){
         return res.status(400).json({
             success: false,
-            message: "longitude is required and must be a valid number"
+            message: "lon is required and must be a valid number"
         });
     }
 
-    if(lat < -90 || lat > 90){
+    if(latitude < -90 || latitude > 90){
         return res.status(400).json({
             success: false,
-            message: "latitude must be between -90 and 90"
+            message: "lat must be between -90 and 90"
         });
     }
 
-    if(lon < -180 || lon > 180){
+    if(longitude < -180 || longitude > 180){
         return res.status(400).json({
             success: false,
-            message: "longitude must be between -180 and 180"
+            message: "lon must be between -180 and 180"
         });
     }
 
-    req.query.latitude = lat;
-    req.query.longitude = lon;
+    req.query.latitude = latitude;
+    req.query.longitude = longitude;
 
     next();
 }

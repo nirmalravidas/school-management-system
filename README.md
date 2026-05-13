@@ -150,12 +150,12 @@ Content-Type: application/json
 **GET** `/listSchools`
 
 #### Query Parameters
-- `latitude` (required, number): User's latitude (-90 to 90)
-- `longitude` (required, number): User's longitude (-180 to 180)
+- `lat` (required, number): User's latitude (-90 to 90)
+- `lon` (required, number): User's longitude (-180 to 180)
 
 #### Example Request
 ```
-GET /listSchools?latitude=22.785855&longitude=86.2436583
+GET /listSchools?lat=22.785855&lon=86.2436583
 ```
 
 #### Success Response (200 OK)
@@ -193,7 +193,15 @@ GET /listSchools?latitude=22.785855&longitude=86.2436583
 ```json
 {
   "success": false,
-  "message": "latitude is required and must be a valid number"
+  "message": "lat is required and must be a valid number"
+}
+```
+
+#### Error Response (405 Method Not Allowed)
+```json
+{
+  "success": false,
+  "message": "Method not allowed. Use GET /listSchools"
 }
 ```
 
@@ -226,8 +234,8 @@ Welcome to the School Management System API
 - `longitude`: required, numeric, between `-180` and `180`
 
 ### For GET /listSchools
-- `latitude`: required, numeric, between `-90` and `90`
-- `longitude`: required, numeric, between `-180` and `180`
+- `lat`: required, numeric, between `-90` and `90`
+- `lon`: required, numeric, between `-180` and `180`
 
 ## Database Schema
 
