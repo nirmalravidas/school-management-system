@@ -37,8 +37,8 @@ export const addSchool = async (req, res) => {
 
 export const listSchools = async (req, res) => {
     try {
-        const userLatitude = req.query.latitude;
-        const userLongitude = req.query.longitude;
+        const userLatitude = req.query.lat;
+        const userLongitude = req.query.lon;
 
         const schools = await SchoolService.getAllSchools();
 

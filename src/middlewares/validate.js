@@ -95,8 +95,8 @@ export function validateListSchools(req, res, next){
         });
     }
 
-    req.query.latitude = latitude;
-    req.query.longitude = longitude;
+    req.query.lat = latitude;
+    req.query.lon = longitude;
 
     next();
 }

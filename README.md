@@ -347,5 +347,3 @@ Expected: 200 OK with schools sorted by distance
 GET /listSchools
 Expected: 400 Bad Request - missing latitude/longitude
 ```
-
-
