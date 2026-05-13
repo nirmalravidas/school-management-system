@@ -81,7 +81,7 @@ yarn start
 - `src/middlewares/validate.js` - Request input validation
 
 ### Deprecated
-- `src/models/schoolModel.js` - ❌ No longer used (functionality moved to Repository/Service)
+- `src/models/schoolModel.js` - No longer used (functionality moved to Repository/Service)
 
 ## API Endpoints
 
