@@ -9,14 +9,15 @@ export const initDB = async () => {
                 address VARCHAR(500) NOT NULL,
                 latitude FLOAT NOT NULL,
                 longitude FLOAT NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE KEY unique_school_location (name, address)
             );
         `;
 
         console.log("Schools table ready");
 
         await pool.execute(createTableQueries);
-        console.log("schools table initialized successfully");
+        console.log("schools table initialized successfully with UNIQUE constraint on (name, address)");
 
     } catch (err) {
         console.error("Table initialization failed:", err.message);
